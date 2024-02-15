@@ -14,16 +14,18 @@ const PORT = process.env.PORT || 5000;
 const productionDir = 'dist';
 
 app.use(express.static(productionDir));
+
 app.get('/test',(req,res)=>{
     res.send('Testing guys');
 })
+
 app.get('/cars/:id', (req, res) => {
     try {
         const fileContent = readFileSync(`${productionDir}/index.html`, 'utf8');
-        console.log('File content:', fileContent);
+        
 
         const $ = cheerio.load(fileContent);
-        console.log('Cheerio loaded successfully');
+        
 
         // Modify title
         $('title').text('detail');
@@ -51,7 +53,7 @@ app.get('/cars/:id', (req, res) => {
         $('head').append('<meta property="twitter:image" content="https://images.unsplash.com/photo-1621155346337-1d19476ba7d6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGltYWdlfGVufDB8fDB8fHww">'); // Add new twitter:image meta tag
         
 
-        console.log('Modified HTML:', $.html());
+        
 
         res.send($.html());
     } catch (error) {
