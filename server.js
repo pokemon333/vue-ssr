@@ -29,7 +29,6 @@ app.get('/cars/:id', (req, res) => {
         
         $('title').text('detail');
 
-        
         $('meta[name="description"]').remove(); 
         $('head').append('<meta name="description" content="detail">');
         
@@ -56,6 +55,7 @@ app.get('/cars/:id', (req, res) => {
         console.error('Error reading file:', error);
         res.status(500).send('Internal Server Error');
     }
+
 });
 
 
