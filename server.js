@@ -14,7 +14,9 @@ const PORT = process.env.PORT || 5000;
 const productionDir = 'dist';
 
 app.use(express.static(productionDir));
-
+app.get('/test',(req,res)=>{
+    res.send('Testing guys');
+})
 app.get('/cars/:id', (req, res) => {
     try {
         const fileContent = readFileSync(`${productionDir}/index.html`, 'utf8');
